@@ -43,6 +43,18 @@ class ProductManager {
             this.saveProducts(products);
         }
     }
+
+    deleteProductById(id) {
+        const products = this.loadProducts();
+        const index = products.findIndex(product => product.id === id);
+
+        if (index !== -1) {
+            products.splice(index, 1);
+            this.saveProducts(products);
+        }
+    }
 }
 
-module.exports = ProductManager;
+// Ejemplo de uso
+const productManager = new ProductManager('products.json');
+productManager.deleteProductById(1);
